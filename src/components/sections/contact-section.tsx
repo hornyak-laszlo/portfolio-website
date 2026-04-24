@@ -64,7 +64,8 @@ export function ContactSection() {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary"
+            aria-label="LinkedIn profile (opens in new tab)"
+            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <LinkedinIcon className="h-5 w-5" />
           </a>
@@ -72,13 +73,15 @@ export function ContactSection() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary"
+            aria-label="GitHub profile (opens in new tab)"
+            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <GithubIcon className="h-5 w-5" />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary"
+            aria-label={`Send email to ${personalInfo.email}`}
+            className="rounded-full border border-border bg-background p-3 transition-colors hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <Mail className="h-5 w-5" />
           </a>

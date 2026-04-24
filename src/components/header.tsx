@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useSyncExternalStore } from "react"
 import { motion } from "framer-motion"
 import { Menu, X, Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -14,9 +14,18 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ]
 
+function useMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const mounted = useMounted()
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
@@ -55,7 +64,10 @@ export function Header() {
             Home
           </button>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav
+            aria-label="Main navigation"
+            className="hidden items-center gap-6 md:flex"
+          >
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -69,28 +81,57 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
+              aria-label={
+                mounted
+                  ? theme === "light"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode"
+                  : "Toggle theme"
+              }
               className="ml-2"
             >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
+              {mounted ? (
+                theme === "light" ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )
               ) : (
-                <Sun className="h-5 w-5" />
+                <span className="inline-block h-5 w-5" />
               )}
             </Button>
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              aria-label={
+                mounted
+                  ? theme === "light"
+                    ? "Switch to dark mode"
+                    : "Switch to light mode"
+                  : "Toggle theme"
+              }
+            >
+              {mounted ? (
+                theme === "light" ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )
               ) : (
-                <Sun className="h-5 w-5" />
+                <span className="inline-block h-5 w-5" />
               )}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -103,10 +144,12 @@ export function Header() {
 
         {isMobileMenuOpen && (
           <motion.nav
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="border-t border-border bg-background/95 backdrop-blur-md md:hidden"
+            aria-label="Mobile navigation"
           >
             <div className="flex flex-col py-4">
               {navItems.map((item) => (

@@ -23,7 +23,10 @@ export function ExperienceSection() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-0 bottom-0 left-4 w-px bg-border md:left-1/2 md:-translate-x-px" />
+          <div
+            className="absolute top-0 bottom-0 left-4 w-px bg-border md:left-1/2 md:-translate-x-px"
+            aria-hidden="true"
+          />
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -46,7 +49,10 @@ export function ExperienceSection() {
                 )}
               </div>
 
-              <div className="absolute left-4 mt-2 h-3 w-3 rounded-full border-2 border-background bg-primary md:left-1/2 md:-translate-x-1.5" />
+              <div
+                className="absolute left-4 mt-2 h-3 w-3 rounded-full border-2 border-background bg-primary md:left-1/2 md:-translate-x-1.5"
+                aria-hidden="true"
+              />
 
               <Card className="ml-10 flex-1 md:ml-0 md:w-1/2">
                 <CardContent className="p-6">
@@ -78,7 +84,10 @@ export function ExperienceSection() {
                         key={i}
                         className="flex gap-2 text-sm text-muted-foreground"
                       >
-                        <span className="shrink-0 leading-relaxed text-primary">
+                        <span
+                          className="shrink-0 leading-relaxed text-primary"
+                          aria-hidden="true"
+                        >
                           •
                         </span>
                         <span className="leading-relaxed">{item}</span>

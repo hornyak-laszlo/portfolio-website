@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function LanguagesSection() {
   return (
-    <section className="py-16 md:py-20">
+    <section id="languages" className="py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -33,7 +33,10 @@ export function EducationSection() {
             >
               <Card className="h-full">
                 <CardContent className="flex items-start gap-4 p-6">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10"
+                    aria-hidden="true"
+                  >
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
                   <div>
