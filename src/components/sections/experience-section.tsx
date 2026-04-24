@@ -39,14 +39,14 @@ export function ExperienceSection() {
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              <div className="flex-1 md:pr-8 md:text-right">
-                {index % 2 === 0 && (
-                  <div className="hidden md:block">
-                    <span className="text-sm text-muted-foreground">
-                      {exp.startDate} – {exp.endDate}
-                    </span>
-                  </div>
-                )}
+              <div
+                className={`flex-1 ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"}`}
+              >
+                <div className="hidden md:block">
+                  <span className="text-sm text-muted-foreground">
+                    {exp.startDate} – {exp.endDate}
+                  </span>
+                </div>
               </div>
 
               <div
@@ -61,14 +61,6 @@ export function ExperienceSection() {
                       {exp.startDate} – {exp.endDate}
                     </span>
                   </div>
-
-                  {index % 2 !== 0 && (
-                    <div className="mb-1 hidden md:block">
-                      <span className="text-sm text-muted-foreground">
-                        {exp.startDate} – {exp.endDate}
-                      </span>
-                    </div>
-                  )}
 
                   <h3 className="text-xl font-semibold text-foreground">
                     {exp.role}
