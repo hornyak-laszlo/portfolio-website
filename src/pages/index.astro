@@ -1,17 +1,22 @@
 ---
 import Layout from "@/layouts/main.astro"
-import { Button } from "@/components/ui/button"
+import { HeroSection } from "@/components/sections/hero-section"
+import { AboutSection } from "@/components/sections/about-section"
+import { ExperienceSection } from "@/components/sections/experience-section"
+import { SkillsSection } from "@/components/sections/skills-section"
+import { EducationSection } from "@/components/sections/education-section"
+import { LanguagesSection } from "@/components/sections/languages-section"
+import { ContactSection } from "@/components/sections/contact-section"
 ---
 
 <Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
-      </div>
-    </div>
-  </div>
+  <main class="min-h-screen">
+    <HeroSection client:load />
+    <AboutSection client:load />
+    <ExperienceSection client:load />
+    <SkillsSection client:load />
+    <EducationSection client:load />
+    <LanguagesSection client:load />
+    <ContactSection client:load />
+  </main>
 </Layout>

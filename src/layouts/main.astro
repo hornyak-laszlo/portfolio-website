@@ -1,5 +1,16 @@
 ---
 import "@/styles/global.css"
+import { LayoutWrapper } from "@/components/layout-wrapper"
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "László Hornyák - Full-Stack Developer & AI Engineer",
+  description = "Experienced Full-Stack Developer and AI Software Engineer with over 10 years of industry experience. Building scalable automation tools, chatbot solutions, and enterprise software.",
+} = Astro.props
 ---
 
 <html lang="en">
@@ -7,9 +18,15 @@ import "@/styles/global.css"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
   </head>
-  <body>
-    <slot />
+  <body class="antialiased">
+    <LayoutWrapper client:load>
+      <slot />
+    </LayoutWrapper>
   </body>
 </html>
