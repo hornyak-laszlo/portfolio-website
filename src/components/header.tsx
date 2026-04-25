@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { useTheme } from "./providers/use-theme"
 
 const navItems = [
-  { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
