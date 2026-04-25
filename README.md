@@ -1,36 +1,38 @@
-# Astro + React + TypeScript + shadcn/ui
+# Portfolio Website
 
-This is a template for a new Astro project with React, TypeScript, and shadcn/ui.
+A modern portfolio website built with **Astro 5**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **shadcn/ui**.
 
-## Adding components
+## Stack
 
-To add components to your app, run the following command:
+- **Astro 5** – Static site generation with islands architecture
+- **React 19** – Interactive components (via `client:*` directives)
+- **TypeScript** – Strict type checking
+- **Tailwind CSS v4** – CSS-based configuration (no `tailwind.config.js`)
+- **shadcn/ui** – UI components with Radix UI primitives
+- **Bun** – Package manager
+
+## Development
 
 ```bash
-npx shadcn@latest add button
+bun dev          # Start development server
+bun build        # Build for production → dist/
+bun preview      # Preview production build
+bun typecheck    # Run TypeScript checks
+bun lint         # Run ESLint
+bun format       # Format code with Prettier
 ```
 
-This will place the ui components in the `src/components` directory.
+## Project Structure
 
-## Using components
-
-To use the components in your app, import them in an `.astro` file:
-
-```astro
----
-import { Button } from "@/components/ui/button"
----
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Astro App</title>
-  </head>
-  <body>
-    <div class="grid h-screen place-items-center content-center">
-      <Button>Button</Button>
-    </div>
-  </body>
-</html>
+```bash
+src/
+  pages/           # Astro file-based routing
+  layouts/         # Astro layouts
+  components/ui/   # shadcn/ui components
+  lib/utils.ts     # Utility functions (cn() helper)
+  styles/global.css # Tailwind v4 entry + theme tokens
 ```
+
+## Deployment
+
+The project is configured for static builds (output to `dist/`).
