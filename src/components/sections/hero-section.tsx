@@ -1,30 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Download, MapPin } from "lucide-react"
+import { ArrowDownRight, Download, Mail, MapPin } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
-import { Button } from "@/components/ui/button"
 import { personalInfo } from "@/data/cv"
 
 export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center justify-center pt-16"
+      className="relative flex min-h-screen items-end pt-32 pb-16 md:items-center md:pt-0 md:pb-0"
     >
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-20 lg:px-8">
-        <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-end gap-12 md:grid-cols-12 md:gap-8">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="shrink-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="md:col-span-4 lg:col-span-3"
           >
-            <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-primary/20 shadow-xl md:h-48 md:w-48">
+            <div className="aspect-[3/4] w-full max-w-[280px] overflow-hidden rounded-lg bg-muted md:max-w-none">
               <img
                 src="/profile.jpg"
                 alt={personalInfo.name}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover grayscale-[20%]"
               />
             </div>
           </motion.div>
@@ -32,86 +31,77 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1 text-center md:text-left"
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="md:col-span-8 lg:col-span-9"
           >
-            <div className="mb-2 flex items-center justify-center gap-2 text-muted-foreground md:justify-start">
-              <MapPin className="h-4 w-4" />
-              <span className="text-sm">{personalInfo.location}</span>
-            </div>
+            <div className="flex flex-col gap-8 md:gap-10">
+              <div>
+                <div className="mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" />
+                  <span>{personalInfo.location}</span>
+                </div>
+                <p className="mb-3 text-sm font-medium tracking-widest text-muted-foreground uppercase">
+                  {personalInfo.title}
+                </p>
+                <h1 className="text-5xl leading-[0.95] font-medium tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
+                  {personalInfo.name}
+                </h1>
+              </div>
 
-            <h1 className="mb-4 text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
-              {personalInfo.name}
-            </h1>
+              <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+                {personalInfo.summary}
+              </p>
 
-            <h2 className="mb-6 text-xl font-medium text-primary md:text-2xl">
-              {personalInfo.title}
-            </h2>
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-wrap items-center gap-6">
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 text-sm font-medium text-foreground transition-opacity hover:opacity-60"
+                  >
+                    <LinkedinIcon className="h-4 w-4" />
+                    <span>LinkedIn</span>
+                    <ArrowDownRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                  </a>
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 text-sm font-medium text-foreground transition-opacity hover:opacity-60"
+                  >
+                    <GithubIcon className="h-4 w-4" />
+                    <span>GitHub</span>
+                    <ArrowDownRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                  </a>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="group flex items-center gap-2 text-sm font-medium text-foreground transition-opacity hover:opacity-60"
+                  >
+                    <Mail className="h-4 w-4" />
+                    <span>Email</span>
+                    <ArrowDownRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                  </a>
+                </div>
 
-            <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              {personalInfo.summary}
-            </p>
-
-            <div className="mb-8 flex flex-wrap justify-center gap-3 md:justify-start">
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" size="sm" className="gap-2">
-                  <LinkedinIcon className="h-4 w-4" />
-                  LinkedIn
-                </Button>
-              </a>
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" size="sm" className="gap-2">
-                  <GithubIcon className="h-4 w-4" />
-                  GitHub
-                </Button>
-              </a>
-              <a href={`mailto:${personalInfo.email}`}>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Mail className="h-4 w-4" />
-                  Email
-                </Button>
-              </a>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-            >
-              <a href="/CV.pdf" download>
-                <Button size="lg" className="gap-2">
+                <a
+                  href="/CV.pdf"
+                  download
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
+                >
                   <Download className="h-4 w-4" />
                   Download CV
-                </Button>
-              </a>
-            </motion.div>
+                  <ArrowDownRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
-        aria-hidden="true"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-10 w-6 justify-center rounded-full border-2 border-border pt-2"
-        >
-          <div className="h-2 w-1 rounded-full bg-foreground/50" />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }

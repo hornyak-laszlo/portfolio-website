@@ -3,7 +3,6 @@
 import { useState, useEffect, useSyncExternalStore } from "react"
 import { motion } from "framer-motion"
 import { Menu, X, Moon, Sun } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { useTheme } from "./providers/use-theme"
 
 const navItems = [
@@ -49,36 +48,32 @@ export function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "border-b border-border bg-background/80 shadow-sm backdrop-blur-md"
-          : "bg-transparent"
+        isScrolled ? "bg-background/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <button
             onClick={() => scrollToSection("#top")}
-            className="text-lg font-semibold text-foreground transition-colors hover:text-primary"
+            className="cursor-pointer text-sm font-medium text-foreground transition-opacity hover:opacity-60"
           >
-            Home
+            LH
           </button>
 
           <nav
             aria-label="Main navigation"
-            className="hidden items-center gap-6 md:flex"
+            className="hidden items-center gap-8 md:flex"
           >
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="cursor-pointer text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
               </button>
             ))}
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               onClick={toggleTheme}
               aria-label={
                 mounted
@@ -87,24 +82,22 @@ export function Header() {
                     : "Switch to light mode"
                   : "Toggle theme"
               }
-              className="ml-2"
+              className="ml-2 cursor-pointer p-2 text-muted-foreground transition-colors hover:text-foreground"
             >
               {mounted ? (
                 theme === "light" ? (
-                  <Moon className="h-5 w-5" />
+                  <Moon className="h-4 w-4" />
                 ) : (
-                  <Sun className="h-5 w-5" />
+                  <Sun className="h-4 w-4" />
                 )
               ) : (
-                <span className="inline-block h-5 w-5" />
+                <span className="inline-block h-4 w-4" />
               )}
-            </Button>
+            </button>
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               onClick={toggleTheme}
               aria-label={
                 mounted
@@ -113,31 +106,31 @@ export function Header() {
                     : "Switch to light mode"
                   : "Toggle theme"
               }
+              className="cursor-pointer p-2 text-muted-foreground"
             >
               {mounted ? (
                 theme === "light" ? (
-                  <Moon className="h-5 w-5" />
+                  <Moon className="h-4 w-4" />
                 ) : (
-                  <Sun className="h-5 w-5" />
+                  <Sun className="h-4 w-4" />
                 )
               ) : (
-                <span className="inline-block h-5 w-5" />
+                <span className="inline-block h-4 w-4" />
               )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
+            </button>
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
+              className="cursor-pointer p-2 text-foreground"
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
               ) : (
                 <Menu className="h-5 w-5" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -155,7 +148,7 @@ export function Header() {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="px-4 py-3 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="cursor-pointer px-4 py-3 text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {item.label}
                 </button>

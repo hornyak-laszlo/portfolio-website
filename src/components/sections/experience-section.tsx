@@ -2,101 +2,80 @@
 
 import { motion } from "framer-motion"
 import { experiences } from "@/data/cv"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="bg-muted/30 py-20 md:py-28">
+    <section id="experience" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl">
+          <p className="mb-3 text-sm font-medium tracking-widest text-muted-foreground uppercase">
+            Career
+          </p>
+          <h2 className="text-4xl font-medium tracking-tight text-foreground md:text-5xl">
             Professional Experience
           </h2>
-          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
-        <div className="relative">
-          <div
-            className="absolute top-0 bottom-0 left-4 w-px bg-border md:left-1/2 md:-translate-x-px"
-            aria-hidden="true"
-          />
-
+        <div className="flex flex-col">
           {experiences.map((exp, index) => (
-            <motion.div
+            <motion.article
               key={exp.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative mb-8 flex flex-col gap-4 last:mb-0 md:flex-row md:gap-8 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              className="border-t border-border py-10 md:py-12"
             >
-              <div
-                className={`flex-1 ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"}`}
-              >
-                <div className="hidden md:block">
-                  <span className="text-sm text-muted-foreground">
-                    {exp.startDate} – {exp.endDate}
-                  </span>
-                </div>
-              </div>
-
-              <div
-                className="absolute left-4 mt-2 h-3 w-3 rounded-full border-2 border-background bg-primary md:left-1/2 md:-translate-x-1.5"
-                aria-hidden="true"
-              />
-
-              <Card className="ml-10 flex-1 md:ml-0 md:w-1/2">
-                <CardContent className="p-6">
-                  <div className="mb-2 md:hidden">
-                    <span className="text-sm text-muted-foreground">
-                      {exp.startDate} – {exp.endDate}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold text-foreground">
-                    {exp.role}
-                  </h3>
-                  <p className="mb-1 font-medium text-primary">{exp.company}</p>
-                  <p className="mb-4 text-sm text-muted-foreground">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
+                <div className="md:col-span-3">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {exp.startDate} — {exp.endDate}
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">
                     {exp.location}
                   </p>
+                </div>
 
-                  <ul className="mb-4 space-y-2">
+                <div className="md:col-span-6">
+                  <h3 className="text-xl font-medium text-foreground md:text-2xl">
+                    {exp.role}
+                  </h3>
+                  <p className="mt-1 text-lg text-muted-foreground">
+                    {exp.company}
+                  </p>
+
+                  <ul className="mt-4 space-y-2">
                     {exp.description.map((item, i) => (
                       <li
                         key={i}
-                        className="flex gap-2 text-sm text-muted-foreground"
+                        className="text-sm leading-relaxed text-muted-foreground"
                       >
-                        <span
-                          className="shrink-0 leading-relaxed text-primary"
-                          aria-hidden="true"
-                        >
-                          •
-                        </span>
-                        <span className="leading-relaxed">{item}</span>
+                        {item}
                       </li>
                     ))}
                   </ul>
+                </div>
 
+                <div className="md:col-span-3">
                   <div className="flex flex-wrap gap-2">
                     {exp.stack.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                      <span
+                        key={tech}
+                        className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                      >
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
