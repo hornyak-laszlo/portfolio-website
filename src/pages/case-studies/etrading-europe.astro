@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/main.astro"
+import { EtradingCaseStudy } from "@/components/case-studies/etrading-case-study"
+
+const title = "eTrading Europe Case Study - László Hornyák"
+const description = "The transformation of eTrading Europe: tackling complex challenges with customised case management solutions. ERP development and software design project."
+---
+
+<Layout title={title} description={description}>
+  <main id="main-content">
+    <EtradingCaseStudy client:load />
+  </main>
+</Layout>

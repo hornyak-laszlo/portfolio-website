@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/main.astro"
+import { SmartcatalogerCaseStudy } from "@/components/case-studies/smartcataloger-case-study"
+
+const title = "SmartCataloger Case Study - László Hornyák"
+const description = "The power of AI in product management: the SmartCataloger story. AI-generated product descriptions, specifications, categorisation and labelling."
+---
+
+<Layout title={title} description={description}>
+  <main id="main-content">
+    <SmartcatalogerCaseStudy client:load />
+  </main>
+</Layout>

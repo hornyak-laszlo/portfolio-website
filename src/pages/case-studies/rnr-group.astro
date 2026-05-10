@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/main.astro"
+import { RnrCaseStudy } from "@/components/case-studies/rnr-case-study"
+
+const title = "RNR Group Case Study - László Hornyák"
+const description = "How a unique CRM system brought radical changes to RNR Group. Integrated case management and CRM with automated workflows."
+---
+
+<Layout title={title} description={description}>
+  <main id="main-content">
+    <RnrCaseStudy client:load />
+  </main>
+</Layout>
